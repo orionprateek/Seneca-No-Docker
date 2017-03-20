@@ -1,0 +1,32 @@
+version: '2'
+services:
+  base:
+    image: mesh-base
+    build: base
+    networks:
+      - n3
+  api:
+    image: mesh-api
+    build: api
+    networks:
+      - n3
+    ports:
+      - 3000:3000
+  sum:
+    image: mesh-sum
+    build: sum
+    networks:
+      - n3
+  monitor:
+    image: mesh-monitor
+    build: monitor
+    networks:
+      - n3
+  product:
+    image: mesh-product
+    build: product
+    networks:
+      - n3
+networks:
+  n3:
+    driver: bridge

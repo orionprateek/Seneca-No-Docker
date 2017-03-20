@@ -1,13 +1,14 @@
 var Seneca = require('seneca')
 
-Seneca({tag: 'product'})
+Seneca({tag: 'sum'})
   .test('print')
   .use('consul-registry', {
     host: '172.23.238.199'
   })
-  .use('./product')
+  .use('./sum')
   .use('mesh', {
-    pin: 'role:math,cmd:product',
+    pin: 'role:math,cmd:sum',
+    host: '@eth0',
     discover: {
       registry: {
         active: true
@@ -19,5 +20,5 @@ Seneca({tag: 'product'})
   })
   .ready(function () {
     var seneca = this
-    console.log('product', seneca.id)
+    console.log('sum', seneca.id)
   })

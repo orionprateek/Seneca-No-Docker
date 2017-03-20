@@ -1,11 +1,14 @@
 var Seneca = require('seneca')
 
-Seneca({log: 'silent'})
+Seneca({tag: 'product'})
+  .test('print')
   .use('consul-registry', {
     host: '172.23.238.199'
   })
+  .use('./product')
   .use('mesh', {
-    monitor: true, 
+    pin: 'role:math,cmd:product',
+    host: '@eth0',
     discover: {
       registry: {
         active: true
@@ -15,5 +18,7 @@ Seneca({log: 'silent'})
       }
     }
   })
-
-
+  .ready(function () {
+    var seneca = this
+    console.log('product', seneca.id)
+  })

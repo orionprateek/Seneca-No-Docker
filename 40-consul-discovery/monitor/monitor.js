@@ -1,13 +1,12 @@
 var Seneca = require('seneca')
 
-Seneca({tag: 'base'})
-  .test('print')
+Seneca({log: 'silent'})
   .use('consul-registry', {
     host: '172.23.238.199'
   })
   .use('mesh', {
-    isbase: true,
-    port: 39002,
+    monitor: true, 
+    host: '@eth0',
     discover: {
       registry: {
         active: true
@@ -16,9 +15,6 @@ Seneca({tag: 'base'})
         active: false
       }
     }
-  })
-  .ready(function () {
-    console.log('base', this.id)
   })
 
 

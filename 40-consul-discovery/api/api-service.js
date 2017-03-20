@@ -6,7 +6,7 @@ Seneca({tag: 'api'})
     host: '172.23.238.199'
   })
   .use('mesh', {
-    bases:['172.23.238.216:39002'],
+    host: '@eth0',
     discover: {
       registry: {
         active: true
